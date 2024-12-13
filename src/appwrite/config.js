@@ -110,7 +110,7 @@ export class Service {
       console.log("Apwrite service deleteFile::error", error);
     }
   }
-  getFukePreview(fileId) {
+  getFilePreview(fileId) {
     return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
   }
 }
