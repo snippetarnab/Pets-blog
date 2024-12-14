@@ -66,7 +66,7 @@ function Signup() {
               {...register("email", {
                 required: true,
                 validate: {
-                  matchpattern: (value) =>
+                  matchpatern: (value) =>
                     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
                       value
                     ) || "Email address must be a valid email address",

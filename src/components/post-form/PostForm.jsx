@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Button, Input, Select, RTE } from "../index.js";
 import appwriteService from "../../appwrite/config.js";
 import { useNavigate } from "react-router-dom";
@@ -10,14 +10,14 @@ function PostForm({ post }) {
     useForm({
       defaultValues: {
         title: post?.title || "",
-        slug: post?.slug || "",
+        slug: post?.$id || "",
         content: post?.content || "",
         status: post?.status || "active",
       },
     });
 
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.userData);
+  const userData = useSelector((state) => state.auth?.userData);
 
   const submit = async (data) => {
     if (post) {
@@ -26,7 +26,7 @@ function PostForm({ post }) {
         : null;
 
       if (file) {
-        appwriteService.deleteFile(post.featredImage);
+        appwriteService.deleteFile(post.featuredImage);
       }
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
@@ -38,6 +38,9 @@ function PostForm({ post }) {
     } else {
       const file = await appwriteService.uploadFile(data.image[0]);
       if (file) {
+        console.log(data.image);
+        console.log(file);
+
         const fileId = file.$id;
         data.featuredImage = fileId;
         const dbPost = await appwriteService.createPost({
