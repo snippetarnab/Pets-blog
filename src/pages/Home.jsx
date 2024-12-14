@@ -33,7 +33,7 @@ function Home() {
               >
                 <img
                   className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
-                  src="/public/developer.jpg"
+                  src="/developer.jpg"
                   alt
                 />
                 <div className="flex flex-col justify-between p-4 ">
@@ -43,10 +43,7 @@ function Home() {
                   <p className="mb-3  text-gray-700 dark:text-gray-400 ">
                     Just Sign up and get started don't worry you just put random
                     email like{" "}
-                    <a
-                      href="#"
-                      className=" text-blue-800 px-1 rounded"
-                    >
+                    <a href="#" className=" text-blue-800 px-1 rounded">
                       a@gmail.com
                     </a>{" "}
                     and password.
