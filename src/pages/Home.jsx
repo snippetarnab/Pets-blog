@@ -19,9 +19,36 @@ function Home() {
         <Container>
           <div className="flex flex-wrap">
             <div className="p-2 w-full">
-              <h1 className="text-2xl font-bold hover:text-gray-500">
+              {/* Display a message if there are no posts */}
+              {/* <h1 className="text-2xl font-bold hover:text-gray-500">
                 Login to read posts
-              </h1>
+              </h1> */}
+              <div class="max-w-sm mx-auto bg-white shadow-md rounded-lg overflow-hidden">
+                <img
+                  class="w-full h-48 object-cover"
+                  src="../public/developer.jpg"
+                  alt="Profile picture"
+                />
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold text-gray-800">
+                   Arnab
+                  </h2>
+                  <p class="text-sm text-gray-500">Developer / Designer</p>
+                  <div class="flex items-center justify-center space-x-4 mt-4">
+                    <a href="#" class="text-blue-500 hover:text-blue-700">
+                      <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-blue-400 hover:text-blue-600">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-pink-500 hover:text-pink-700">
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Display a message if there are no posts */}
             </div>
           </div>
         </Container>
