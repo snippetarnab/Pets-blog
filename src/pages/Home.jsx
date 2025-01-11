@@ -26,13 +26,11 @@ function Home() {
               <div class="max-w-sm mx-auto bg-white shadow-md rounded-lg overflow-hidden">
                 <img
                   class="w-full h-48 object-cover"
-                  src="../public/developer.jpg"
+                  src="https://avatars.githubusercontent.com/u/160257879?v=4"
                   alt="Profile picture"
                 />
                 <div class="p-4">
-                  <h2 class="text-lg font-semibold text-gray-800">
-                   Arnab
-                  </h2>
+                  <h2 class="text-lg font-semibold text-gray-800">Arnab</h2>
                   <p class="text-sm text-gray-500">Developer / Designer</p>
                   <div class="flex items-center justify-center space-x-4 mt-4">
                     <a href="#" class="text-blue-500 hover:text-blue-700">
