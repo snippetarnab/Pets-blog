@@ -5,6 +5,9 @@ import authservice from "./appwrite/auth.js";
 import { login, logout } from "./store/authSlice";
 import {Header, Footer} from "./components/index.js";
 import {Outlet} from "react-router-dom";
+// In your JS file
+import '@fortawesome/fontawesome-free/css/all.css';
+
 
 
 function App() {

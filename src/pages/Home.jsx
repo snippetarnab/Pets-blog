@@ -36,10 +36,16 @@ function Home() {
                     <a href="#" class="text-blue-500 hover:text-blue-700">
                       <i class="fab fa-facebook"></i>
                     </a>
-                    <a href="#" class="text-blue-400 hover:text-blue-600">
+                    <a
+                      href="https://x.com/imArnabParua?t=yAnk60IAsBwevSB9gliCjQ&s=09"
+                      class="text-blue-400 hover:text-blue-600"
+                    >
                       <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="text-pink-500 hover:text-pink-700">
+                    <a
+                      href="https://www.instagram.com/i.arnab?igsh=Nm1kNHcxdnFxOTV2"
+                      class="text-pink-500 hover:text-pink-700"
+                    >
                       <i class="fab fa-instagram"></i>
                     </a>
                   </div>
