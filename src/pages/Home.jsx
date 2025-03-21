@@ -43,7 +43,7 @@ function Home() {
                       <i class="fab fa-twitter"></i>
                     </a>
                     <a
-                      href="https://www.instagram.com/i.arnab?igsh=Nm1kNHcxdnFxOTV2"
+                      href="https://www.instagram.com/_i.arnab_?igsh=Nm1kNHcxdnFxOTV2"
                       class="text-pink-500 hover:text-pink-700"
                     >
                       <i class="fab fa-instagram"></i>
