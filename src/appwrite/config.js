@@ -110,8 +110,45 @@ export class Service {
       console.log("Apwrite service deleteFile::error", error);
     }
   }
-  getFilePreview(fileId) {
-    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+  // getFilePreview(fileId) {
+  //   return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+  // }
+  // inside your Service class in src/appwrite/config.js
+  // inside your Service class in src/appwrite/config.js
+  // Replace any existing getFilePreview definition with this async version.
+
+  // src/appwrite/config.js  (inside Service class)
+  async getFilePreview(fileId) {
+    if (!fileId) return "/petsblog.png";
+
+    try {
+      // Ask Appwrite for a resized preview (returns an object with .href)
+      const preview = await this.bucket.getFilePreview(
+        conf.appwriteBucketId,
+        fileId,
+        600, // width
+        400, // height
+        "center", // gravity/fit
+        80 // quality
+      );
+
+      // If SDK returns object with href -> return the string
+      if (preview && typeof preview.href === "string") {
+        return preview.href;
+      }
+
+      // Fallback: construct the public view URL (works if file is public)
+      const endpoint = (conf.appwriteurl || "").replace(/\/$/, "");
+      return `${endpoint}/storage/buckets/${conf.appwriteBucketId}/files/${fileId}/view?project=${conf.appwriteProjectId}`;
+    } catch (err) {
+      console.error("getFilePreview error:", err);
+      try {
+        const endpoint = (conf.appwriteurl || "").replace(/\/$/, "");
+        return `${endpoint}/storage/buckets/${conf.appwriteBucketId}/files/${fileId}/view?project=${conf.appwriteProjectId}`;
+      } catch (e) {
+        return "/petsblog.png";
+      }
+    }
   }
 }
 
