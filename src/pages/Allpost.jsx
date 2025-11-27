@@ -41,7 +41,7 @@ function Allpost() {
   const [status, setStatus] = useState("idle");
 
   useEffect(() => {
-    console.log("[ALLPOST] mounted"); // <- immediate mount log
+    //console.log("[ALLPOST] mounted"); // <- immediate mount log
 
     // expose service so you can run tests from browser console if needed
     try {
@@ -51,20 +51,20 @@ function Allpost() {
 
     async function load() {
       setStatus("loading");
-      console.log("[ALLPOST] calling getPosts()...");
+      //console.log("[ALLPOST] calling getPosts()...");
       try {
         const res = await appwriteService.getPosts([]); // keep [] if your service expects queries
-        console.log("[ALLPOST] getPosts() resolved:", res);
+        //console.log("[ALLPOST] getPosts() resolved:", res);
         if (!res) {
-          console.warn("[ALLPOST] getPosts returned falsy:", res);
+          //console.warn("[ALLPOST] getPosts returned falsy:", res);
           setPosts([]);
           setStatus("no-data");
           return;
         }
         const docs = res.documents || [];
-        console.log(`[ALLPOST] documents count: ${docs.length}`);
+        //console.log(`[ALLPOST] documents count: ${docs.length}`);
         docs.forEach((d, i) => {
-          console.log(`[ALLPOST] doc[${i}] id: ${d.$id}`, d);
+          //console.log(`[ALLPOST] doc[${i}] id: ${d.$id}`, d);
           // try to get preview URL for each document and log result
           try {
             const maybe = appwriteService.getFilePreview(d.featuredImage);
