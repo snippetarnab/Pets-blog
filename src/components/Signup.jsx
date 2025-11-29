@@ -1,3 +1,9 @@
+// 
+
+//Update version
+
+
+// Signup.jsx
 import React, { useState } from "react";
 import { login } from "../store/authSlice";
 import { useDispatch } from "react-redux";
@@ -5,13 +11,17 @@ import { useForm } from "react-hook-form";
 import { Button, Input, Logo } from "./index.js";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../appwrite/auth.js";
-import { use } from "react";
+import { toast } from "react-hot-toast";
 
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const create = async (data) => {
     setError("");
@@ -20,12 +30,26 @@ function Signup() {
       if (session) {
         const userData = await authService.getCurrentUser();
         if (userData) dispatch(login(userData));
+        toast.success("Account created");
         navigate("/");
       }
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      const msg = err?.message || "Failed to create account";
+      setError(msg);
+      toast.error(msg);
     }
   };
+
+  const onInvalid = (formErrors) => {
+    // show the first validation message as a toast
+    const first = Object.values(formErrors)[0];
+    const message =
+      first?.message ||
+      (first?.types && Object.values(first.types)[0]) ||
+      "Please fix the errors";
+    toast.error(message);
+  };
+
   return (
     <div className="flex items-center justify-center">
       <div
@@ -48,15 +72,18 @@ function Signup() {
             Sign In
           </Link>
         </p>
+
+        {/* keep this inline error UI exactly as before */}
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-        <form onSubmit={handleSubmit(create)}>
+
+        <form onSubmit={handleSubmit(create, onInvalid)}>
           <div className="space-y-5">
             <Input
               type="text"
               label="Full Name: "
               placeholder="Enter your name"
               {...register("name", {
-                required: true,
+                required: "Name is required",
               })}
             />
             <Input
@@ -64,12 +91,10 @@ function Signup() {
               type="email"
               placeholder="Enter your email"
               {...register("email", {
-                required: true,
-                validate: {
-                  matchpatern: (value) =>
-                    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
-                      value
-                    ) || "Email address must be a valid email address",
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Email address must be valid",
                 },
               })}
             />
@@ -78,7 +103,11 @@ function Signup() {
               type="password"
               placeholder="Enter your password"
               {...register("password", {
-                required: true,
+                required: "Password is required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
               })}
             />
             <Button type="submit" className="w-full">

@@ -2,13 +2,21 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import authService from "../../appwrite/auth";
 import { logout } from "../../store/authSlice";
+import toast from "react-hot-toast";
 
 function LogoutBtn() {
   const dispatch = useDispatch();
   const logoutHandler = () => {
-    authService.logout().then(() => {
-      dispatch(logout());
-    });
+    authService
+      .logout()
+      .then(() => {
+        dispatch(logout());
+        toast.success("Logged out successfully");
+      })
+      .catch((err) => {
+        const msg = err?.message || "Failed to logout";
+        toast.error(msg);
+      });
   };
   return (
     <button

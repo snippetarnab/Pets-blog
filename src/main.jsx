@@ -16,6 +16,7 @@ import AllPosts from "./pages/Allpost.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import EditPost from "./pages/EditPost.jsx";
 import Post from "./pages/Post.jsx";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <Toaster position="top-center" />
     </Provider>
   </StrictMode>
 );
